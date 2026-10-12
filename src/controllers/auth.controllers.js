@@ -33,7 +33,9 @@ export const register = async (req , res) =>{
         password:hashPassword,
         role,
         semester,
-        department
+        department,
+
+        isVerified: role === "student" ? true : false,
     })
 
     await user.save()
