@@ -1,3 +1,4 @@
+import User from "../models/user.js";
 export const getPendingFaculty = async (req, res) => {
   try {
     const faculties = await User.find({
