@@ -102,6 +102,8 @@ export const login = async (req , res) =>{
         console.log("Generated Token:", token);
         console.log("Verified Immediately:", jwt.verify(token, process.env.JWT_SECRET));
 
+        console.log("Approval status from DB:", user.approvalStatus);
+
         return res.status(200).json({
            success: true,
            message: "Login successful",
