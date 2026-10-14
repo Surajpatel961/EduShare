@@ -16,6 +16,13 @@ export const register = async (req , res) =>{
         })
     }
 
+    if(role !== "student" && role !== "faculty") {
+        return res.status(403).json({
+            success:false,
+            message:"admin registeration not allowed"
+        })
+    }
+
     const userEmail = await User.findOne({email})
 
     if(userEmail){
@@ -36,6 +43,7 @@ export const register = async (req , res) =>{
         department,
 
         isVerified: role === "student" ? true : false,
+        approvalStatus: role === "student" ? "approved" : "pending",
     })
 
     await user.save()
